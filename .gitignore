@@ -24,6 +24,6 @@ JLinkLog.txt
 *.htm
 *.sct
 *.map
-*.hex
+# *.hex
 #*.bin
 
