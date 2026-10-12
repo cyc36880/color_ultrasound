@@ -16,9 +16,9 @@ void MAX_I2C_Init(void)
 
     // I2C初始化
     I2C_InitStruct.PCLK_Freq = 48000000;
-    I2C_InitStruct.I2C_SCL_Freq = 1000000;
+    I2C_InitStruct.I2C_SCL_Freq = 100000;
     I2C_InitStruct.I2C_OwnSlaveAddr0 = I2C_SLAVEADDRESS; // TEST ADDRESS0
-    I2C_InitStruct.I2C_OwnSlaveAddr1 = I2C_SLAVEADDRESS; // TEST ADDRESS1
+    // I2C_InitStruct.I2C_OwnSlaveAddr1 = I2C_SLAVEADDRESS; // TEST ADDRESS1
     // I2C_InitStruct.I2C_OwnSlaveAddr2 = I2C_SLAVEADDRESS_OTHER2;  //TEST ADDRESS2
 
     I2C_InitStruct.I2C_OwnGc = DISABLE;
@@ -28,10 +28,8 @@ void MAX_I2C_Init(void)
     I2C_Cmd(CW_I2C1, ENABLE);               // 模块使能
     I2C_AcknowledgeConfig(CW_I2C1, ENABLE); // ACK打开
 
-//    __disable_irq();
     NVIC_SetPriority(I2C1_IRQn, 2);
     NVIC_EnableIRQ(I2C1_IRQn);
-//    __enable_irq();
 }
 
 static void HAL_I2c_MspInit(void)

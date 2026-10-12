@@ -15,6 +15,7 @@
 #include "cw32l010_uart.h"
 #include "cw32l010_atim.h"
 #include "cw32l010_gtim.h"
+#include "cw32l010_btim.h"
 #include "cw32l010_adc.h"
 #include "cw32l010_flash.h"
 #include "cw32l010_i2c.h"

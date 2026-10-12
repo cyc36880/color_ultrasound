@@ -5,6 +5,7 @@
 #include "i2c.h"
 #include "uart.h"
 #include "time.h"
+#include "gpio.h"
 
 static void SystemClock_Config(void);
 static void NVIC_Configuration(void);
@@ -13,11 +14,13 @@ int main(void)
 {
     __enable_irq(); 
     SystemClock_Config();
+    SysTickDelay(20); // 等待上电稳定
     NVIC_Configuration();
+    MX_GPIO_Init();
     MAX_I2C_Init();
-    MAX_UART2_Init();
     MAX_ATIME_Init();
     MAX_GTIME_Init();
+    MAX_BTIM1_Init();
 
     setup();
     while (1)
@@ -63,9 +66,5 @@ static void SystemClock_Config(void)
 
 static void NVIC_Configuration(void)
 {
-    //优先级，无优先级分组
-    NVIC_SetPriority(UART2_IRQn, 0);
-    //UARTx中断使能
-    NVIC_EnableIRQ(UART2_IRQn);
 }
 

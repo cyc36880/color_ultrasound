@@ -1,10 +1,14 @@
 #include "time.h"
+#include "zst_ultr.h"
 
 static void HAL_TIME_GPIO_Init(TIME_HandleTypeDef* timeHandle);
 
 
 TIME_HandleTypeDef gtime;
 TIME_HandleTypeDef atime;
+TIME_HandleTypeDef btim1;
+
+extern ultr_t ultr;
 
 void MAX_ATIME_Init(void)
 {
@@ -80,6 +84,17 @@ void MAX_GTIME_Init(void)
     HAL_TIME_GPIO_Init(&gtime);
 }
 
+void MAX_BTIM1_Init(void)
+{
+    BTIM_TimeBaseInitTypeDef BTIM_TimeBaseInitStruct = {0};
+    BTIM_TimeBaseInitStruct.BTIM_Mode = BTIM_MODE_TIMER;
+    BTIM_TimeBaseInitStruct.BTIM_Prescaler = 48-1;
+    BTIM_TimeBaseInitStruct.BTIM_Period = 0xFFFF;
+    BTIM_TimeBaseInit(CW_BTIM1, &BTIM_TimeBaseInitStruct);
+    BTIM_ITConfig(CW_BTIM1, BTIM_IT_UPDATE, ENABLE);
+    BTIM_Cmd(CW_BTIM1, ENABLE);
+    NVIC_EnableIRQ(BTIM1_IRQn);
+}
 
 
 static void HAL_TIME_GPIO_Init(TIME_HandleTypeDef* timeHandle)
@@ -112,6 +127,14 @@ static void HAL_TIME_GPIO_Init(TIME_HandleTypeDef* timeHandle)
     }
 }
 
+void BTIM1_IRQHandlerCallback(void)
+{
+    if (BTIM_GetITStatus(CW_BTIM1, BTIM_IT_UPDATE))
+    {
+        BTIM_ClearITPendingBit(CW_BTIM1, BTIM_IT_UPDATE);
+        ultr_timOverFlow_callback(&ultr);
+    }
+}
 
 void rgb_set_color(uint8_t r, uint8_t g, uint8_t b)
 {

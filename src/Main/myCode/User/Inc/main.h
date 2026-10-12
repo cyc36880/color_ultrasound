@@ -28,32 +28,14 @@ extern "C"
 #include "cw32l010_hal.h"
 
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
-/* USER CODE END Includes */
+#define I2C_IRQ_LEVEL   0
+#define GPIO_IRQ_LEVEL  0
+#define BTIM1_IRQ_LEVEL 0
 
-/* Exported types ------------------------------------------------------------*/
-/* USER CODE BEGIN ET */
-/* USER CODE END ET */
-
-/* Exported constants --------------------------------------------------------*/
-/* USER CODE BEGIN EC */
-/* USER CODE END EC */
-
-/* Exported macro ------------------------------------------------------------*/
-/* USER CODE BEGIN EM */
-/* USER CODE END EM */
-
-/* Exported functions prototypes ---------------------------------------------*/
-/* USER CODE BEGIN EFP */
-/* USER CODE END EFP */
-
-/* Private defines -----------------------------------------------------------*/
-/* USER CODE BEGIN Private defines */
-
-#define WS2812_GPIO_Port CW_GPIOA
-#define WS2812_GPIO_Pin  GPIO_PIN_0
-
+#define ULTR_TRIG_GPIO_Port CW_GPIOB
+#define ULTR_TRIG_GPIO_Pin  GPIO_PIN_5
+#define ULTR_ECHO_GPIO_Port CW_GPIOB
+#define ULTR_ECHO_GPIO_Pin  GPIO_PIN_6
 
 
 

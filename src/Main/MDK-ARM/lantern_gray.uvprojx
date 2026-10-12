@@ -448,9 +448,9 @@
           <GroupName>Drive</GroupName>
           <Files>
             <File>
-              <FileName>ws2812.c</FileName>
+              <FileName>zst_ultr.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\myCode\Drive\src\ws2812.c</FilePath>
+              <FilePath>..\myCode\Drive\src\zst_ultr.c</FilePath>
             </File>
           </Files>
         </Group>

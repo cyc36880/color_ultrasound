@@ -18,6 +18,9 @@
 #include "interrupts_cw32l010.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+extern void BTIM1_IRQHandlerCallback(void);
+extern void GPIOB_IRQHandlerCallback(void);
 /* USER CODE END Includes */
 
 
@@ -182,7 +185,7 @@ void GPIOA_IRQHandler(void)
 void GPIOB_IRQHandler(void)
 {
     /* USER CODE BEGIN */
-
+    GPIOB_IRQHandlerCallback();
     /* USER CODE END */
 }
 
@@ -253,7 +256,7 @@ void LPTIM_IRQHandler(void)
 void BTIM1_IRQHandler(void)
 {
     /* USER CODE BEGIN */
-
+    BTIM1_IRQHandlerCallback();
     /* USER CODE END */
 }
 
